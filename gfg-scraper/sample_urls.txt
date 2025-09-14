@@ -1,0 +1,10 @@
+# Sample GeeksforGeeks Problem URLs for Testing
+
+# Subarray with Given Sum
+https://www.geeksforgeeks.org/problems/subarray-with-given-sum-1587115621/1
+
+# Kadane's Algorithm (Maximum Subarray)
+https://www.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1
+
+# Missing Number in Array
+https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1
