@@ -7,7 +7,9 @@ A simple Python + Streamlit application to scrape and display GeeksforGeeks codi
 - 🔍 Scrape GeeksforGeeks coding problems by URL
 - 📝 Extract question title and problem statement (HTML)
 - 💬 Get the first 5 comments from the Comments section
+- 🤖 AI-powered solution generation using OpenAI GPT
 - 🌐 Web-based interface using Streamlit
+- 🔑 Environment variable support for API keys (.env file)
 - 🛡️ Robust error handling and retry logic
 - 📱 Responsive and user-friendly UI
 
@@ -17,8 +19,9 @@ A simple Python + Streamlit application to scrape and display GeeksforGeeks codi
 - **Streamlit** - Web interface
 - **requests** - HTTP client
 - **BeautifulSoup4 + lxml** - HTML parsing
-- **tenacity** - Retry logic
-- **html5lib** - Additional HTML parsing support
+- **OpenAI** - AI solution generation
+- **LangChain** - LLM orchestration
+- **python-dotenv** - Environment variable loading
 
 ## Quick Start
 
@@ -41,7 +44,19 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 3. Run the Application
+### 3. Setup Environment Variables
+
+```bash
+# Copy the example environment file
+cp .env.example .env
+
+# Edit .env and add your OpenAI API key
+# OPENAI_API_KEY=your_actual_api_key_here
+```
+
+**Get your OpenAI API key from**: https://platform.openai.com/api-keys
+
+### 4. Run the Application
 
 ```bash
 streamlit run app.py
@@ -57,6 +72,9 @@ The application will open in your browser at `http://localhost:8501`.
    - Question title
    - Problem statement (formatted HTML)
    - First 5 comments from the Comments section
+4. **Generate AI Solution**: Click "🚀 Generate AI Solution" to get an AI-powered Python solution
+   - If you've set up the `.env` file, the API key will be loaded automatically
+   - Otherwise, you can enter your OpenAI API key manually
 
 ### Sample URLs
 
@@ -71,11 +89,15 @@ The `sample_urls.txt` file contains tested GeeksforGeeks problem URLs you can us
 ```
 gfg-scraper/
 ├── app.py                    # Main Streamlit application
-├── scraper/
+├── src/
 │   ├── __init__.py          # Package initialization
-│   └── geeksforgeeks.py     # Core scraping logic
+│   ├── geeksforgeeks.py     # Core scraping logic
+│   ├── ai_solution_generator.py # AI solution generation
+│   └── utils.py             # Utility functions
 ├── tests/
 │   └── test_geeksforgeeks.py # Unit tests
+├── .env.example             # Example environment file
+├── .gitignore              # Git ignore rules
 ├── sample_urls.txt          # Sample problem URLs
 ├── requirements.txt         # Python dependencies
 └── README.md               # This file

@@ -2,5 +2,7 @@ streamlit
 requests
 beautifulsoup4
 lxml
-tenacity
-html5lib
+openai
+langchain
+langchain-openai
+python-dotenv
