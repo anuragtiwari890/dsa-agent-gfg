@@ -7,6 +7,7 @@ from typing import Optional, Callable
 from ...models.problem import Problem
 from ...models.ai_solution import AISolution
 from ...services.ai_service import AIService
+from .save_solution_component import SaveSolutionComponent
 
 
 class AISolutionDisplayComponent:
@@ -70,6 +71,7 @@ class AISolutionDisplayComponent:
     
     @staticmethod
     def display_solution(
+        problem: Problem,
         solution: AISolution,
         on_clear_solution: Callable[[], None]
     ) -> None:
@@ -77,6 +79,7 @@ class AISolutionDisplayComponent:
         Display the generated AI solution.
         
         Args:
+            problem: Problem associated with the solution
             solution: AI solution to display
             on_clear_solution: Callback to clear the solution
         """
@@ -88,12 +91,23 @@ class AISolutionDisplayComponent:
         # Display the code
         st.code(solution.get_formatted_code(), language='python', line_numbers=True)
         
+        # Action buttons
+        col1, col2, col3 = st.columns([2, 2, 3])
+        
+        with col1:
+            # Download solution button
+            SaveSolutionComponent.display_download_button(problem, solution)
+        
+        with col2:
+            # Clear solution button
+            if st.button("🗑️ Clear Solution", type="secondary"):
+                on_clear_solution()
+        
+        with col3:
+            st.write("")  # Spacing
+        
         # Tips and actions
         st.caption("💡 Tip: You can copy the code by clicking the copy icon in the top-right corner of the code block")
-        
-        # Clear solution button
-        if st.button("🗑️ Clear Solution", type="secondary"):
-            on_clear_solution()
     
     @staticmethod
     def display_ai_section(
@@ -121,7 +135,10 @@ class AISolutionDisplayComponent:
         # Display current solution if available
         if current_solution:
             AISolutionDisplayComponent.display_solution(
-                current_solution, on_clear_solution
+                problem, current_solution, on_clear_solution
             )
+        
+        # Download info section
+        SaveSolutionComponent.display_download_info()
         
         st.markdown("---")

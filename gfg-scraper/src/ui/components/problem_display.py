@@ -23,7 +23,7 @@ class ProblemDisplayComponent:
         """Display problem statement."""
         if problem.statement_text:
             formatted_text = TextFormatter.clean_text(problem.statement_text)
-            st.text(formatted_text)
+            st.markdown(formatted_text)
         elif problem.statement_html:
             formatted_statement = TextFormatter.format_problem_statement(problem.statement_html)
             st.markdown(formatted_statement, unsafe_allow_html=True)

@@ -98,9 +98,9 @@ class AIService:
             
             # Create the prompt template using LangChain
             prompt_template = ChatPromptTemplate.from_messages([
-                ("system", "You are a Python coding expert who provides clean, well-commented solutions to coding problems. Always respond with only Python code, proper explainations inline comments and at the very top the high level algo of the code in comments only"),
+                ("system", "You are a Python coding expert who provides clean, well-commented solutions to coding problems. Always respond with only Python code, proper detailed explainations in comments and at the very top the detailed explainations of the algo of the code in comments only"),
                 ("human", """
-                    You are a Python coding expert. Based on the following GeeksforGeeks problem and user comments/solutions, provide a clean, optimized Python solution.
+                    You are a Python coding expert. Based on the following GeeksforGeeks problem and user comments/solutions, provide a clean, most optimized Python solution.
                     Problem Title: {problem_title}
                     Problem Statement: {problem_statement}
                     User Comments and Solutions: {comment_context}
@@ -112,7 +112,7 @@ class AIService:
                     4. Optimize for both time and space complexity
                     5. Handle edge cases appropriately
                     6. Use descriptive variable names
-                    7. Add the high level algo of the code in comments only at the very top
+                    7. Add the detailed algo of the code in comments only at the very top
                     8. add few example calls to the code
                     9. Follow Python best practices
 
